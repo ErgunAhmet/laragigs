@@ -11,7 +11,7 @@ class ListingController extends Controller
     public function index() {
         return view('listings.index', [
             'heading' => 'Latest Listings',
-            'listings' => Listing::all()
+            'listings' => Listing::latest()->filter(request(['tag','search']))->get()
         ]);
     }
     //show single listings
@@ -20,4 +20,6 @@ class ListingController extends Controller
             'listing' => $listing
         ]);
     }
+
+
 }
